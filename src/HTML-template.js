@@ -4,7 +4,8 @@
     //2. module.exprt containing the framework HTML with template literals
           //and nesting the generateProfiles array  
 
-// ------ HTML template for profiles --- create generate profile function 
+// ------ HTML template for 'engineer' profiles --- create generate profile function 
+
         const generateProfiles = profilesArr => {
             return `            
                 ${profilesArr
@@ -28,8 +29,35 @@
                   .join('')}                
               `;
             };
-                
+   
+/*          
+// ------ HTML template for 'intern' profiles --- create generate profile function 
 
+const generateProfiles = profilesArr => {
+  return `            
+      ${profilesArr
+        .filter(({ confirmAddIntern }) => confirmAddIntern)
+        .map(({ internName, internID, internEmail, gitHubInternUserName }) => {
+          return `
+<div class="column">
+  <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        <h5>${internName}</h5><h6>Intern</h6>
+          <ul class="list-group list-group-flush"> 
+            <li class="list-group-item">ID: ${internID} </li>
+            <li class="list-group-item">&#128386; Email: <a href="mailto:${internEmail}">${internEmail}</a> </li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/${gitHubInternUserName}">${gitHubInternUserName}</a> </li>                                                      
+          </ul>
+      </div>
+  </div>
+</div> 
+        `;
+        })
+        .join('')}                
+    `;
+  };      
+
+  */
 
 // -- HTML template ----- framework for index.html -----  //
 

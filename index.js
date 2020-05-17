@@ -171,6 +171,95 @@
                 };               
 
 
+// --------------------- Inquirer prompt - intern profile ------------------------------//
+
+const promptInternProfile = profileData => {
+    //-- adding the array 
+    if (!profileInternData.profiles) {
+        profileInternData.profiles = [];
+    }
+        console.log(`
+        _______________________
+
+        Create an intern profile:
+        _______________________
+        `);
+            return inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'internName',
+                        message: 'Intern name?',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('You left the selection blank. Please enter the intern name:');
+                            return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'internID',
+                        message: 'Enter the Employee ID:',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('EmployeeID cannot be blank. Please the employee ID:');
+                            return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'internEmail',
+                        message: 'Enter their email address:',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('Email cannot be blank. Please enter the email address:');
+                            return false;
+                            }
+                        }
+                    },                                    
+                    {
+                        type: 'input',
+                        name: 'gitHubInternUserName',
+                        message: 'Enter the GitHub username:',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('GitHub username cannot be blank. Please enter GitHub username:');
+                            return false;
+                            }
+                        }
+                    },           
+                    {
+                        type: 'confirm',
+                        name: 'confirmAddIntern',
+                        message: 'Would you like to enter in profile information for another intern?',
+                        default: false
+                    }                                     
+            ])
+                    .then(internData => {
+                        profileInternData.profiles.push(internData);
+                        if (internData.confirmAddintern) {
+                        return promptInternProfile(profileInternData);
+                        } else {
+                        return profileInternData;
+                        }
+                    });                
+};               
+
+
+
 // -- initialize promptUser() code -- with promptProfile() array nested, in prompt Promise chain  -- //
 
                 promptUser()
