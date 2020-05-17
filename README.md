@@ -13,7 +13,7 @@ https://github.com/ktrnthsnr/Team-Profile-Generator
 * [Contribution](#contribution)
 
 ## Description
-This is a command-line role-playing game (RPG) in which a user battles against a series of enemies whose health and stats can be sustained by a potion. This app includes unit testing or TDD, utilizing Jest.
+This is a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person. Unit testing is included.
 
 ## Installation
 - Prereq: install VSCode, Node.js

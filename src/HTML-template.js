@@ -4,8 +4,6 @@
           //and nesting the generateProfiles array  
 // ------------------------------------------------------------------ //
 
-
-
 // ------ HTML template for projects --- create generate project function 
         const generateProfiles = projectsArr => {
             return `            

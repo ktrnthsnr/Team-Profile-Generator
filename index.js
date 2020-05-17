@@ -1,8 +1,8 @@
 //summary of file: index.js
     //1. requires for:
         // a) Inquirer
-        // b) generatePage (import of HTML-template)
-        // c) generateSite (import of writeFile\copyFile)
+        // b) generateHTML (import of HTML-template)
+        // c) genWriteCopyFiles (import of writeFile\copyFile)
     //2. Inquirer promptUser() function
     //3. initializes promptUser() function
 // ------------------------------------------------------------------ //
@@ -10,8 +10,8 @@
 // requires
        const inquirer = require('inquirer');
     // console.log(inquirer);
-       const generatePage = require('./src/HTML-template');
-    // const generateSite = require('./utils/generate-HTMLCSS.js');
+       const generateHTML = require('./src/HTML-template');
+    // const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
        const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
             
 // -- wrap the inquirer.prompt() inside a promptUser function
@@ -172,7 +172,7 @@
                 promptUser()
                 .then(promptProfile)
                 .then(portfolioData => {
-                    return generatePage(portfolioData);
+                    return generateHTML(portfolioData);
                 })
                 .then(pageHTML => {
                 return writeFile(pageHTML);
