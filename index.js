@@ -1,4 +1,5 @@
-//summary of file: index.js
+//-------------  summary of file:  index.js -------------------------------- // 
+
     //1. requires for:
         // a) Inquirer
         // b) generateHTML (import of HTML-template)
@@ -7,9 +8,9 @@
         // a) promptUser()
         // b) promptProfile()
     //3. initializes promptUser() function, with promptProfile() nested within
-// ------------------------------------------------------------------ //
 
-// requires
+// ------------------------- requires --------------------------------------- //
+
         const inquirer = require('inquirer');
         // console.log(inquirer);
         const generateHTML = require('./src/HTML-template');
@@ -82,12 +83,12 @@
                 ]);
             };
 
-// --------------------- Inquirer prompt - profile ------------------------------//
+// --------------------- Inquirer prompt - engineer profile ------------------------------//
 
         const promptProfile = profileData => {
                     //-- adding the array 
-                    if (!profileData.projects) {
-                        profileData.projects = [];
+                    if (!profileData.profiles) {
+                        profileData.profiles = [];
                     }
                         console.log(`
                         _______________________
@@ -160,14 +161,15 @@
                                     }                                     
                             ])
                                     .then(engData => {
-                                        profileData.projects.push(engData);
+                                        profileData.profiles.push(engData);
                                         if (engData.confirmAddEngineer) {
                                         return promptProfile(profileData);
                                         } else {
                                         return profileData;
                                         }
                                     });                
-                };
+                };               
+
 
 // -- initialize promptUser() code -- with promptProfile() array nested, in prompt Promise chain  -- //
 

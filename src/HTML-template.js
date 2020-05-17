@@ -1,13 +1,13 @@
-//summary of file: HTML-template
+//-------------  summary of file:  HTML-template ---------------------- //
+
     //1. engineer array function, generateProfiles, with template literals
     //2. module.exprt containing the framework HTML with template literals
           //and nesting the generateProfiles array  
-// ------------------------------------------------------------------ //
 
-// ------ HTML template for projects --- create generate project function 
-        const generateProfiles = projectsArr => {
+// ------ HTML template for profiles --- create generate profile function 
+        const generateProfiles = profilesArr => {
             return `            
-                ${projectsArr
+                ${profilesArr
                   .filter(({ confirmAddEngineer }) => confirmAddEngineer)
                   .map(({ engineerName, engineerID, engineerEmail, gitHubUserName }) => {
                     return `
@@ -35,7 +35,7 @@
 
 module.exports = templateData => {
     // destructure page data by section
-    const { projects, ...header } = templateData;
+    const { profiles, ...header } = templateData;
 
     return `
     <!DOCTYPE html>
@@ -67,7 +67,7 @@ module.exports = templateData => {
                       </div>
                   </div>
             </div>            
-            ${generateProfiles(projects)}
+            ${generateProfiles(profiles)}
     </main>    
     </body>
     </html>
