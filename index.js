@@ -10,14 +10,14 @@
 // ------------------------------------------------------------------ //
 
 // requires
-       const inquirer = require('inquirer');
-    // console.log(inquirer);
-       const generateHTML = require('./src/HTML-template');
-    // const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
-       const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
-            
-// -- wrap the inquirer.prompt() inside a promptUser function
-        // --- profile questions
+        const inquirer = require('inquirer');
+        // console.log(inquirer);
+        const generateHTML = require('./src/HTML-template');
+        // const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
+        const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
+                
+//-------------------- Inquirer prompt - promptUser() ------------------------- //
+
         const promptUser = () => {
             return inquirer.prompt([
 
@@ -82,12 +82,12 @@
                 ]);
             };
 
-        // promptUser().then(answers => console.log(answers));
-                //--function expression with an array
-                const promptProfile = portfolioData => {
+// --------------------- Inquirer prompt - profile ------------------------------//
+
+        const promptProfile = profileData => {
                     //-- adding the array 
-                    if (!portfolioData.projects) {
-                        portfolioData.projects = [];
+                    if (!profileData.projects) {
+                        profileData.projects = [];
                     }
                         console.log(`
                         _______________________
@@ -159,22 +159,22 @@
                                         default: false
                                     }                                     
                             ])
-                                    .then(profileData => {
-                                        portfolioData.projects.push(profileData);
-                                        if (profileData.confirmAddEngineer) {
-                                        return promptProfile(portfolioData);
+                                    .then(engData => {
+                                        profileData.projects.push(engData);
+                                        if (engData.confirmAddEngineer) {
+                                        return promptProfile(profileData);
                                         } else {
-                                        return portfolioData;
+                                        return profileData;
                                         }
                                     });                
                 };
 
-// -- init promptUser code -- with promptProfile nested, in prompt Promise chain  -- 
+// -- initialize promptUser() code -- with promptProfile() array nested, in prompt Promise chain  -- //
 
                 promptUser()
                 .then(promptProfile)
-                .then(portfolioData => {
-                    return generateHTML(portfolioData);
+                .then(profileData => {
+                    return generateHTML(profileData);
                 })
                 .then(pageHTML => {
                 return writeFile(pageHTML);

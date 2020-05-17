@@ -13,7 +13,7 @@ https://github.com/ktrnthsnr/Team-Profile-Generator
 * [Contribution](#contribution)
 
 ## Description
-This is a Node.js command-line application that takes in information about employees on a software engineering team and generates an HTML webpage that displays summaries for each person. Unit testing is included.
+This is a Node.js command-line application requesting user input on employees, and then generates an HTML webpage that displays summaries for each person. Unit testing through Jest is included.
 
 ## Installation
 - Prereq: install VSCode, Node.js
@@ -38,7 +38,7 @@ mod10
 Run Jest within the VSCode terminal, $ npm run test
 
 ## Technology
-Node, JavaScript, ES6, Jest, HTML
+Node, JavaScript, ES6, HTML, CSS, Jest, npm, npm Inquirer
 
 ## Contribution
 ktrnthsnr
