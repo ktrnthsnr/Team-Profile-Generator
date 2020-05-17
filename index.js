@@ -3,8 +3,10 @@
         // a) Inquirer
         // b) generateHTML (import of HTML-template)
         // c) genWriteCopyFiles (import of writeFile\copyFile)
-    //2. Inquirer promptUser() function
-    //3. initializes promptUser() function
+    //2. Inquirer prompt functions
+        // a) promptUser()
+        // b) promptProfile()
+    //3. initializes promptUser() function, with promptProfile() nested within
 // ------------------------------------------------------------------ //
 
 // requires
@@ -157,9 +159,9 @@
                                         default: false
                                     }                                     
                             ])
-                                    .then(projectData => {
-                                        portfolioData.projects.push(projectData);
-                                        if (projectData.confirmAddEngineer) {
+                                    .then(profileData => {
+                                        portfolioData.projects.push(profileData);
+                                        if (profileData.confirmAddEngineer) {
                                         return promptProfile(portfolioData);
                                         } else {
                                         return portfolioData;
@@ -167,7 +169,7 @@
                                     });                
                 };
 
-// -- updated - promptUser code --  update the Inquirer prompt Promise chain -- 
+// -- init promptUser code -- with promptProfile nested, in prompt Promise chain  -- 
 
                 promptUser()
                 .then(promptProfile)
@@ -184,6 +186,7 @@
                 .then(copyFileResponse => {
                     console.log(copyFileResponse);
                 })
+                //catch for errors
                 .catch(err => {
                     console.log(err);
                 });
