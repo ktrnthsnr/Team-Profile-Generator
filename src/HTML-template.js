@@ -46,7 +46,7 @@ const generateInternProfiles = iprofilesArr => {
           <ul class="list-group list-group-flush"> 
             <li class="list-group-item">ID: ${internID} </li>
             <li class="list-group-item">&#128386; Email: <a href="mailto:${internEmail}">${internEmail}</a> </li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/${gitHubInternUserName}">${gitHubInternUserName}</a> </li>                                                      
+            <li class="list-group-item">School: ${schoolInternUserName}</li>                                                   
           </ul>
       </div>
   </div>
@@ -96,6 +96,7 @@ module.exports = templateData => {
                   </div>
             </div>            
             ${generateProfiles(profiles)}
+            ${generateInternProfiles(profiles)}
     </main>    
     </body>
     </html>

@@ -83,7 +83,7 @@
                 ]);
             };
 
-// --------------------- Inquirer prompt - engineer profile ------------------------------//
+// --------------------- Inquirer prompt - 'engineer' profile ------------------------------//
 
         const promptProfile = profileData => {
                     //-- adding the array 
@@ -91,10 +91,10 @@
                         profileData.profiles = [];
                     }
                         console.log(`
-                        _______________________
+                        ___________________________
 
-                        Create another profile:
-                        _______________________
+                        Create an engineer profile:
+                        ___________________________
                         `);
                             return inquirer.prompt([
                                     {
@@ -156,7 +156,7 @@
                                     {
                                         type: 'confirm',
                                         name: 'confirmAddEngineer',
-                                        message: 'Would you like to enter in profile information for another engineer?',
+                                        message: 'Would you like to enter in the profile information for another engineer?',
                                         default: false
                                     }                                     
                             ])
@@ -171,7 +171,7 @@
                 };               
 
 
-// --------------------- Inquirer prompt - intern profile ------------------------------//
+// --------------------- Inquirer prompt - 'intern' profile ------------------------------//
 
 const promptInternProfile = profileInternData => {
     //-- adding the array 
@@ -179,10 +179,10 @@ const promptInternProfile = profileInternData => {
         profileInternData.iprofiles = [];
     }
         console.log(`
-        _______________________
+        _________________________
 
         Create an intern profile:
-        _______________________
+        _________________________
         `);
             return inquirer.prompt([
                     {
@@ -229,14 +229,14 @@ const promptInternProfile = profileInternData => {
                     },                                    
                     {
                         type: 'input',
-                        name: 'gitHubInternUserName',
-                        message: 'Enter the GitHub username:',
+                        name: 'schoolInternUserName',
+                        message: 'Enter the school name:',
                         //--validation
                         validate: nameInput => {
                             if (nameInput) {
                             return true;
                             } else {
-                            console.log('GitHub username cannot be blank. Please enter GitHub username:');
+                            console.log('School name cannot be blank. Please enter the univerity name:');
                             return false;
                             }
                         }
@@ -244,7 +244,7 @@ const promptInternProfile = profileInternData => {
                     {
                         type: 'confirm',
                         name: 'confirmAddIntern',
-                        message: 'Would you like to enter in profile information for another intern?',
+                        message: 'Would you like to enter in the profile information for another intern?',
                         default: false
                     }                                     
             ])
