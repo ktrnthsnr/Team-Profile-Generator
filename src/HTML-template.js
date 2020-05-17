@@ -30,12 +30,12 @@
               `;
             };
    
-/*          
+       
 // ------ HTML template for 'intern' profiles --- create generate profile function 
 
-const generateProfiles = profilesArr => {
+const generateInternProfiles = iprofilesArr => {
   return `            
-      ${profilesArr
+      ${iprofilesArr
         .filter(({ confirmAddIntern }) => confirmAddIntern)
         .map(({ internName, internID, internEmail, gitHubInternUserName }) => {
           return `
@@ -57,13 +57,13 @@ const generateProfiles = profilesArr => {
     `;
   };      
 
-  */
+
 
 // -- HTML template ----- framework for index.html -----  //
 
 module.exports = templateData => {
     // destructure page data by section
-    const { profiles, ...header } = templateData;
+    const { profiles, iprofiles, ...header } = templateData;
 
     return `
     <!DOCTYPE html>

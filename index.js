@@ -173,10 +173,10 @@
 
 // --------------------- Inquirer prompt - intern profile ------------------------------//
 
-const promptInternProfile = profileData => {
+const promptInternProfile = profileInternData => {
     //-- adding the array 
-    if (!profileInternData.profiles) {
-        profileInternData.profiles = [];
+    if (!profileInternData.iprofiles) {
+        profileInternData.iprofiles = [];
     }
         console.log(`
         _______________________
@@ -249,7 +249,7 @@ const promptInternProfile = profileData => {
                     }                                     
             ])
                     .then(internData => {
-                        profileInternData.profiles.push(internData);
+                        profileInternData.iprofiles.push(internProfileData);
                         if (internData.confirmAddintern) {
                         return promptInternProfile(profileInternData);
                         } else {
