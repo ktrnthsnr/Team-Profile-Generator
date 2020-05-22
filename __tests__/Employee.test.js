@@ -17,4 +17,4 @@ test("validates name is a string", () => {
 
 
 
-// run test with a $ npm test   
+// run test with an $ npm run test Employee

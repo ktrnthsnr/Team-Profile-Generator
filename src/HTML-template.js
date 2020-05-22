@@ -7,19 +7,21 @@
 // ------ HTML template for 'engineer' profiles --- create generate profile function 
 
         const generateProfiles = profilesArr => {
+            console.log('something', profilesArr)
             return `            
                 ${profilesArr
-                  .filter(({ confirmAddEngineer }) => confirmAddEngineer)
-                  .map(({ engineerName, engineerID, engineerEmail, gitHubUserName }) => {
+                  // .filter(({ confirmAddEngineer }) => confirmAddEngineer)
+                  .map((engineer) => {
+                    // if (employee instanceof Engineer)
                     return `
           <div class="column">
             <div class="card" style="width: 18rem;">
                 <div class="card-header">
-                  <h5>${engineerName}</h5><h6>Engineer</h6>
+                  <h5>${engineer.getName()}</h5><h6>Engineer</h6>
                     <ul class="list-group list-group-flush"> 
-                      <li class="list-group-item">ID: ${engineerID} </li>
-                      <li class="list-group-item">&#128386; Email: <a href="mailto:${engineerEmail}">${engineerEmail}</a> </li>
-                      <li class="list-group-item">GitHub: <a href="https://github.com/${gitHubUserName}">${gitHubUserName}</a> </li>                                                      
+                      <li class="list-group-item">ID: ${engineer.getID()} </li>
+                      <li class="list-group-item">&#128386; Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a> </li>
+                      <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a> </li>                                                      
                     </ul>
                 </div>
             </div>
@@ -30,6 +32,7 @@
               `;
             };
    
+/* 
        
 // ------ HTML template for 'intern' profiles --- create generate profile function 
 
@@ -37,7 +40,7 @@ const generateInternProfiles = iprofilesArr => {
   return `            
       ${iprofilesArr
         .filter(({ confirmAddIntern }) => confirmAddIntern)
-        .map(({ internName, internID, internEmail, gitHubInternUserName }) => {
+        .map(({ internName, internID, internEmail, schoolInternUserName }) => {
           return `
 <div class="column">
   <div class="card" style="width: 18rem;">
@@ -57,6 +60,7 @@ const generateInternProfiles = iprofilesArr => {
     `;
   };      
 
+*/
 
 
 // -- HTML template ----- framework for index.html -----  //
@@ -95,10 +99,13 @@ module.exports = templateData => {
                       </div>
                   </div>
             </div>            
-            ${generateProfiles(profiles)}
-            ${generateInternProfiles(profiles)}
+            ${generateProfiles(profiles)}            
+
     </main>    
     </body>
     </html>
     `;
 };
+
+// removed from HTML template till working
+    // ${generateInternProfiles(iprofiles)}

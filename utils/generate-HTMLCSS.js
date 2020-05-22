@@ -1,12 +1,13 @@
 //-------------  summary of file: generate-HTMLCSS -------------------------- //
 
     //1. require for file system or fs
-    //2. writeFile w/promice    (HTML-template > dist/HTML.index)
+    //2. writeFile w/promice    (index.html from HTML-template > dist/HTML.index)
     //3. copyFile               (style.css from /src > /dist folders)
     //4. module.export writeFile, copyFiles
 
 // ------------------------- require --------------------------------------- //
 
+//core\built in file system module that allows you to create files on the your server
 const fs = require('fs');
 
 // -- create a promise that writes an HTML file to the /dist dir -- //

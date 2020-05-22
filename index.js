@@ -9,15 +9,16 @@
         // b) promptProfile()
     //3. initializes promptUser() function, with promptProfile() nested within
 
-// ------------------------- requires --------------------------------------- //
+// ------ requires - import modules ---------------------------------------------------------//
 
         const inquirer = require('inquirer');
-        // console.log(inquirer);
+        const Engineer = require('./lib/Engineer');
+        console.log(inquirer);
         const generateHTML = require('./src/HTML-template');
         // const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
         const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
                 
-//-------------------- Inquirer prompt - promptUser() ------------------------- //
+//-----'Manager' profile, define the code, with an Inquirer prompt function --------//
 
         const promptUser = () => {
             return inquirer.prompt([
@@ -79,13 +80,32 @@
                           return false;
                         }
                       }
-                },                                                        
-                ]);
-            };
+                } 
+                        ,
+                        {
+                            type: 'list',
+                            name: 'choiceInternEngineer',
+                            message: 'For your next profile, select either engineer or intern:',
+                            choices: ['engineer', 'intern'],
+                            // default: 'engineer'
+                        }                                                                     
+            ])
+            ;
 
-// --------------------- Inquirer prompt - 'engineer' profile ------------------------------//
+                        // .then( answers => {
+                        //     if (answers.choiceInternEngineer == 'engineer') {                                                                       
+                        //         return promptProfile;
+                        //     } else {
+                        //         return promptInternProfile;
+                        //     }                
+                        // });
+
+        };
+
+// ------ 'Engineer' profile, define the code, with an Inquirer prompt function --------- //
 
         const promptProfile = profileData => {
+                        console.log(profileData)
                     //-- adding the array 
                     if (!profileData.profiles) {
                         profileData.profiles = [];
@@ -161,17 +181,24 @@
                                     }                                     
                             ])
                                     .then(engData => {
-                                        profileData.profiles.push(engData);
+                                        //end engineer loop if default false, ie. no
+                                        console.log(engData, "Completed adding engineer profiles.")
+                                        // TODO make actual engineer object
+                                        const engineer = new Engineer(engData.engineerName, engData.engineerID, engData.engineerEmail, engData.gitHubUserName);
+                                        profileData.profiles.push(engineer);
                                         if (engData.confirmAddEngineer) {
-                                        return promptProfile(profileData);
+                                            console.log(engData, "You're done with engineering profiles.")
+                                            // exit engineer loop if default false, ie. no                                                        
+                                            return promptProfile(profileData);                                           
                                         } else {
-                                        return profileData;
+                                            // start engineer loop again if true, ie. yes
+                                            return profileData;
                                         }
-                                    });                
+                                    });
                 };               
 
 
-// --------------------- Inquirer prompt - 'intern' profile ------------------------------//
+// --- 'Intern' profile, define the code, with an Inquirer prompt function--------- //
 
 const promptInternProfile = profileInternData => {
     //-- adding the array 
@@ -244,31 +271,63 @@ const promptInternProfile = profileInternData => {
                     {
                         type: 'confirm',
                         name: 'confirmAddIntern',
-                        message: 'Would you like to enter in the profile information for another intern?',
+                        message: 'Another intern profile?',
                         default: false
                     }                                     
             ])
                     .then(internData => {
-                        profileInternData.iprofiles.push(internProfileData);
-                        if (internData.confirmAddintern) {
-                        return promptInternProfile(profileInternData);
+                        //end intern loop if default false or no
+                        console.log(internData, "Completed adding intern profiles.")
+                        profileInternData.iprofiles.push(internData);
+                        if (internData.confirmAddIntern) {
+                            console.log(internData, "You're done with intern profiles.")
+                        //end engineer loop if default false or no
+                            return promptInternProfile(profileInternData);
                         } else {
+                        // start intern loop again if true or yes
                         return profileInternData;
                         }
-                    });                
+                    });           
+
+                    // .then(engData => {
+                    //     //end engineer loop if default false or no
+                    //     console.log(engData, "Completed adding engineer profiles.")
+                    //     profileData.profiles.push(engData);
+                    //     if (engData.confirmAddEngineer) {
+                    //         console.log(engData, "You're done with engineering profiles.")
+                    //         //end engineer loop if default false or no                                                        
+                    //         return promptProfile(profileData);                         
+                    //     } else {
+                    //         // start engineer loop again if true or yes
+                    //         return profileData;
+                    //     }
+                    // });
 };               
 
 
 
-// -- initialize promptUser() code -- with promptProfile() array nested, in prompt Promise chain  -- //
+// -- run the code: initialize promptUser() code -- with promptProfile and promptInternProfile & their arrays nested in a promise chain  -- //
 
+                // manager questions
                 promptUser()
+
+                // engineer questions
                 .then(promptProfile)
                 .then(profileData => {
+                    //TODO 
+                    
+                    console.log('apple', profileData);
                     return generateHTML(profileData);
                 })
+                  // intern questions <section not working>
+                    // .then(promptInternProfile)
+                    // .then(profileInternData => {
+                    //     return generateHTML(profileInternData);
+                    // })   
+
+                //write HTML and copy CSS files to /dist folder
                 .then(pageHTML => {
-                return writeFile(pageHTML);
+                    return writeFile(pageHTML);
                 })
                 .then(writeFileResponse => {
                     console.log(writeFileResponse);
@@ -277,7 +336,7 @@ const promptInternProfile = profileInternData => {
                 .then(copyFileResponse => {
                     console.log(copyFileResponse);
                 })
-                //catch for errors
+                //catch and display for any errors
                 .catch(err => {
                     console.log(err);
                 });
