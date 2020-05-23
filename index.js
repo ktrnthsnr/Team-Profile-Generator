@@ -71,7 +71,7 @@
                 {
                     type: 'input',
                     name: 'managerNumber',
-                    message: 'Team manager telephone number?',
+                    message: 'Team manager telephone number (only include numbers no dashes)?',
                     validate: nameInput => {
                         if (nameInput) {
                           return true;

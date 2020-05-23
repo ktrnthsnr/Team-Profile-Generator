@@ -4,10 +4,13 @@
     //2. module.exprt containing the framework HTML with template literals
           //and nesting the generateProfiles array  
 
+// -- import ----------------------------------------------------------- //
+const Manager = require('../lib/Manager.js');
+
 // ------ HTML template for 'engineer' profiles --- create generate profile function 
 
         const generateProfiles = profilesArr => {
-            console.log('something', profilesArr)
+            console.log('engineerArray', profilesArr)
             return `            
                 ${profilesArr
                   // .filter(({ confirmAddEngineer }) => confirmAddEngineer)
@@ -65,9 +68,9 @@ const generateInternProfiles = iprofilesArr => {
 
 // -- HTML template ----- framework for index.html -----  //
 
-module.exports = templateData => {
+module.exports = templateData => {  
     // destructure page data by section
-    const { profiles, iprofiles, ...header } = templateData;
+    const { profiles, iprofiles, manager, ...header } = templateData;
 
     return `
     <!DOCTYPE html>
