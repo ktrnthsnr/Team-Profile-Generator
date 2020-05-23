@@ -12,8 +12,10 @@
 // ------ requires - import modules ---------------------------------------------------------//
 
         const inquirer = require('inquirer');
-        const Engineer = require('./lib/Engineer');
-        console.log(inquirer);
+        // console.log(inquirer);
+        const Engineer = require('./lib/Engineer');   
+        const Manager = require('./lib/Manager');   
+        const Intern = require('./lib/Intern');
         const generateHTML = require('./src/HTML-template');
         // const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
         const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
@@ -105,8 +107,8 @@
 // ------ 'Engineer' profile, define the code, with an Inquirer prompt function --------- //
 
         const promptProfile = profileData => {
-                        console.log(profileData)
-                    //-- adding the array 
+                        // console.log(profileData)
+                    //-- adding the array s
                     if (!profileData.profiles) {
                         profileData.profiles = [];
                     }

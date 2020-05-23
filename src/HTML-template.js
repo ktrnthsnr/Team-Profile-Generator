@@ -5,7 +5,7 @@
           //and nesting the generateProfiles array  
 
 // -- import ----------------------------------------------------------- //
-const Manager = require('../lib/Manager.js');
+// const Manager = require('../lib/Manager.js');
 
 // ------ HTML template for 'engineer' profiles --- create generate profile function 
 
@@ -90,7 +90,8 @@ module.exports = templateData => {
           <h1><a class="navbar-brand" href="#">My Team - Profiles</a> </h1>
         </nav>
     </header>
-    <main>        
+    <main>  
+      <div class="row">      
             <div class="column">
                   <div class="card" style="width: 18rem;">
                       <div class="card-header"><h5>${header.managerName}</h5> <h6>Manager</h6>
@@ -104,6 +105,7 @@ module.exports = templateData => {
             </div>            
             ${generateProfiles(profiles)}            
 
+      </div>     
     </main>    
     </body>
     </html>

@@ -27,15 +27,22 @@ This is a Node.js command-line application requesting user input on employees, a
 - Create a .gitignore file in the root and add node_modules to this file
 - If you need to re-add the dependencies, run $ npm install
 
-## Usage
+## Usage and User Responses
 * From your terminal, invoke\start the application by running 
 * $ node index.js
+* Here is a sample of user questions and responses
+![Usage](./usage.jpg "README.md usage")
+* Sample HTML created
+![HTML](./htmlview.jpg "README.md HTML output")
+* Sample HTML in browser
+![Browser](./browserview.jpg "README.md browser view")
 
 ## Reference
 mod10
 
 ## Testing
 Run Jest within the VSCode terminal, $ npm run test
+![Test](./tests.jpg "README.md tests")
 
 ## Technology
 Node, JavaScript, ES6, HTML, CSS, Jest, npm, npm Inquirer
