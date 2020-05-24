@@ -11,195 +11,201 @@
 
 // ------ requires - import modules ---------------------------------------------------------//
 
-        const inquirer = require('inquirer');
-        // console.log(inquirer);
-        const Engineer = require('./lib/Engineer');   
-        const Manager = require('./lib/Manager');   
-        const Intern = require('./lib/Intern');
-        const generateHTML = require('./src/HTML-template');
-        // const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
-        const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
+const inquirer = require('inquirer');
+// console.log(inquirer);
+const Engineer = require('./lib/Engineer');   
+const Manager = require('./lib/Manager');
+const Intern = require('./lib/Intern');
+const generateHTML = require('./src/HTML-template');
+// const genWriteCopyFiles = require('./utils/generate-HTMLCSS.js');
+const { writeFile, copyFile } = require('./utils/generate-HTMLCSS.js');
                 
 //-----'Manager' profile, define the code, with an Inquirer prompt function --------//
 
-        const promptUser = () => {
-            return inquirer.prompt([
-
-                //question 1, with validation: manager's name
-                {
-                    type: 'input',
-                    name: 'managerName', //name
-                    message: 'Team manager name?',
-                    //added validation
-                    validate: nameInput => {
-                      if (nameInput) {
-                        return true;
-                      } else {
-                        console.log('Name cannot be empty. Please enter a manager name:');
-                        return false;
-                      }
-                    }
-                  },                            
+const promptUser = () => {    
+    return inquirer.prompt([
+        //question 1, with validation: manager's name
+        {
+            type: 'input',
+            name: 'managerName', 
+            message: 'Team manager name?',
+            //added validation
+            validate: nameInput => {
+                if (nameInput) {
+                return true;
+                } else {
+                console.log('Name cannot be empty. Please enter a manager name:');
+                return false;
+                }
+            }
+            },                            
+        
+            //question 2, what is the manager's employeeID
+        {
+            type: 'input',
+            name: 'employeeID', //github
+            message: 'Team manager employee ID?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('EmployeeID cannot be blank. Please the manager employee ID:');
+                    return false;
+                }
+                }
+        },
+        //question 3, what is the manager's email address
+        {
+            type: 'input',
+            name: 'managerEmail',
+            message: 'Team manager email address?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an email address:');
+                    return false;
+                }
+                }
+        },
+        //question 4, what is the manager's office telephone number
+        {
+            type: 'input',
+            name: 'managerNumber',
+            message: 'Team manager telephone number (only include numbers no dashes)?',
+            validate: nameInput => {
+                if (nameInput) {
+                    return true;
+                } else {
+                    console.log('Please enter an telephone address:');
+                    return false;
+                }
+                }
+        } 
+                // ,
+                // {
+                //     type: 'list',
+                //     name: 'choiceInternEngineer',
+                //     message: 'For your next profile, select either engineer or intern:',
+                //     choices: ['engineer', 'intern'],
+                //     // default: 'engineer'
+                // }                                                                     
+    ])
+                // .then(x => {    
+                // const manager = new Manager('managerName', 'employeeID','managerEmail', 'managerNumber';
+                // x.push(manager);
+                // });
                 
-                 //question 2, what is the manager's employeeID
-                {
-                    type: 'input',
-                    name: 'employeeID', //github
-                    message: 'Team manager employee ID?',
-                    validate: nameInput => {
-                        if (nameInput) {
-                          return true;
-                        } else {
-                          console.log('EmployeeID cannot be blank. Please the manager employee ID:');
-                          return false;
-                        }
-                      }
-                },
-                //question 3, what is the manager's email address
-                {
-                    type: 'input',
-                    name: 'managerEmail',
-                    message: 'Team manager email address?',
-                    validate: nameInput => {
-                        if (nameInput) {
-                          return true;
-                        } else {
-                          console.log('Please enter an email address:');
-                          return false;
-                        }
-                      }
-                },
-                //question 4, what is the manager's office telephone number
-                {
-                    type: 'input',
-                    name: 'managerNumber',
-                    message: 'Team manager telephone number (only include numbers no dashes)?',
-                    validate: nameInput => {
-                        if (nameInput) {
-                          return true;
-                        } else {
-                          console.log('Please enter an telephone address:');
-                          return false;
-                        }
-                      }
-                } 
-                        ,
-                        {
-                            type: 'list',
-                            name: 'choiceInternEngineer',
-                            message: 'For your next profile, select either engineer or intern:',
-                            choices: ['engineer', 'intern'],
-                            // default: 'engineer'
-                        }                                                                     
-            ])
-            ;
 
-                        // .then( answers => {
-                        //     if (answers.choiceInternEngineer == 'engineer') {                                                                       
-                        //         return promptProfile;
-                        //     } else {
-                        //         return promptInternProfile;
-                        //     }                
-                        // });
+                // .then( answer => {
+                //     if (answer.choices == [0]) {                                                                       
+                //         return promptProfile;
+                //     } else {
+                //         return promptInternProfile;
+                //     }                
+                // });
+};
+             
+       
 
-        };
+
 
 // ------ 'Engineer' profile, define the code, with an Inquirer prompt function --------- //
+const promptProfile = profileData => {
+        // console.log(profileData)
+    //-- adding the array s
+    if (!profileData.profiles) {
+        profileData.profiles = [];
+    }
+        console.log(`
+        ___________________________
 
-        const promptProfile = profileData => {
-                        // console.log(profileData)
-                    //-- adding the array s
-                    if (!profileData.profiles) {
-                        profileData.profiles = [];
-                    }
-                        console.log(`
-                        ___________________________
+        Create an engineer profile:
+        ___________________________
+        `);
+            return inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'engineerName',
+                        message: 'Engineer name?',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('You left the selection blank. Please enter the engineer name:');
+                            return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'engineerID',
+                        message: 'Enter the Employee ID:',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('EmployeeID cannot be blank. Please the employee ID:');
+                            return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'engineerEmail',
+                        message: 'Enter their email address:',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('Email cannot be blank. Please enter the email address:');
+                            return false;
+                            }
+                        }
+                    },                                    
+                    {
+                        type: 'input',
+                        name: 'gitHubUserName',
+                        message: 'Enter the GitHub username:',
+                        //--validation
+                        validate: nameInput => {
+                            if (nameInput) {
+                            return true;
+                            } else {
+                            console.log('GitHub username cannot be blank. Please enter GitHub username:');
+                            return false;
+                            }
+                        }
+                    },           
+                    {
+                        type: 'confirm',
+                        name: 'confirmAddEngineer',
+                        message: 'Would you like to enter in the profile information for another engineer?',
+                        default: false
+                    }                                     
+            ])
+                    .then(engData => {
+                        //end engineer loop if default false, ie. no
+                        console.log(engData, "Completed adding engineer profiles.")
+                        // TODO make actual engineer object
+                        const engineer = new Engineer(engData.engineerName, engData.engineerID, engData.engineerEmail, engData.gitHubUserName);
+                        profileData.profiles.push(engineer);
+                        if (engData.confirmAddEngineer) {
+                            console.log(engData, "You're done with engineering profiles.")
+                            // exit engineer loop if default false, ie. no                                                        
+                            return promptProfile(profileData);                                           
+                        } else {
+                            // start engineer loop again if true, ie. yes
+                            return profileData;
+                        }
+                    });
+};               
 
-                        Create an engineer profile:
-                        ___________________________
-                        `);
-                            return inquirer.prompt([
-                                    {
-                                        type: 'input',
-                                        name: 'engineerName',
-                                        message: 'Engineer name?',
-                                        //--validation
-                                        validate: nameInput => {
-                                            if (nameInput) {
-                                            return true;
-                                            } else {
-                                            console.log('You left the selection blank. Please enter the engineer name:');
-                                            return false;
-                                            }
-                                        }
-                                    },
-                                    {
-                                        type: 'input',
-                                        name: 'engineerID',
-                                        message: 'Enter the Employee ID:',
-                                        //--validation
-                                        validate: nameInput => {
-                                            if (nameInput) {
-                                            return true;
-                                            } else {
-                                            console.log('EmployeeID cannot be blank. Please the employee ID:');
-                                            return false;
-                                            }
-                                        }
-                                    },
-                                    {
-                                        type: 'input',
-                                        name: 'engineerEmail',
-                                        message: 'Enter their email address:',
-                                        //--validation
-                                        validate: nameInput => {
-                                            if (nameInput) {
-                                            return true;
-                                            } else {
-                                            console.log('Email cannot be blank. Please enter the email address:');
-                                            return false;
-                                            }
-                                        }
-                                    },                                    
-                                    {
-                                        type: 'input',
-                                        name: 'gitHubUserName',
-                                        message: 'Enter the GitHub username:',
-                                        //--validation
-                                        validate: nameInput => {
-                                            if (nameInput) {
-                                            return true;
-                                            } else {
-                                            console.log('GitHub username cannot be blank. Please enter GitHub username:');
-                                            return false;
-                                            }
-                                        }
-                                    },           
-                                    {
-                                        type: 'confirm',
-                                        name: 'confirmAddEngineer',
-                                        message: 'Would you like to enter in the profile information for another engineer?',
-                                        default: false
-                                    }                                     
-                            ])
-                                    .then(engData => {
-                                        //end engineer loop if default false, ie. no
-                                        console.log(engData, "Completed adding engineer profiles.")
-                                        // TODO make actual engineer object
-                                        const engineer = new Engineer(engData.engineerName, engData.engineerID, engData.engineerEmail, engData.gitHubUserName);
-                                        profileData.profiles.push(engineer);
-                                        if (engData.confirmAddEngineer) {
-                                            console.log(engData, "You're done with engineering profiles.")
-                                            // exit engineer loop if default false, ie. no                                                        
-                                            return promptProfile(profileData);                                           
-                                        } else {
-                                            // start engineer loop again if true, ie. yes
-                                            return profileData;
-                                        }
-                                    });
-                };               
-
-
+/*
+                
 // --- 'Intern' profile, define the code, with an Inquirer prompt function--------- //
 
 const promptInternProfile = profileInternData => {
@@ -269,7 +275,8 @@ const promptInternProfile = profileInternData => {
                             return false;
                             }
                         }
-                    },           
+                    }
+                    ,           
                     {
                         type: 'confirm',
                         name: 'confirmAddIntern',
@@ -280,33 +287,22 @@ const promptInternProfile = profileInternData => {
                     .then(internData => {
                         //end intern loop if default false or no
                         console.log(internData, "Completed adding intern profiles.")
-                        profileInternData.iprofiles.push(internData);
+                        // TODO: add the intern class object
+                        const intern = new Intern(internData.internName, internData.internID, internData.internEmail, internData.schoolInternUserName);
+                        profileInternData.iprofiles.push(intern);
                         if (internData.confirmAddIntern) {
                             console.log(internData, "You're done with intern profiles.")
-                        //end engineer loop if default false or no
+                        //end intern loop if default false or no
                             return promptInternProfile(profileInternData);
                         } else {
                         // start intern loop again if true or yes
                         return profileInternData;
                         }
-                    });           
+                    });
 
-                    // .then(engData => {
-                    //     //end engineer loop if default false or no
-                    //     console.log(engData, "Completed adding engineer profiles.")
-                    //     profileData.profiles.push(engData);
-                    //     if (engData.confirmAddEngineer) {
-                    //         console.log(engData, "You're done with engineering profiles.")
-                    //         //end engineer loop if default false or no                                                        
-                    //         return promptProfile(profileData);                         
-                    //     } else {
-                    //         // start engineer loop again if true or yes
-                    //         return profileData;
-                    //     }
-                    // });
 };               
 
-
+*/
 
 // -- run the code: initialize promptUser() code -- with promptProfile and promptInternProfile & their arrays nested in a promise chain  -- //
 
@@ -321,11 +317,11 @@ const promptInternProfile = profileInternData => {
                     console.log('apple', profileData);
                     return generateHTML(profileData);
                 })
-                  // intern questions <section not working>
-                    // .then(promptInternProfile)
-                    // .then(profileInternData => {
-                    //     return generateHTML(profileInternData);
-                    // })   
+                  // intern questions               -------------------  <this section not working>
+                            // .then(promptInternProfile)
+                            // .then(profileInternData => {
+                            //     return generateHTML(profileInternData);
+                            // })   
 
                 //write HTML and copy CSS files to /dist folder
                 .then(pageHTML => {

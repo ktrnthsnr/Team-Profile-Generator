@@ -32,10 +32,12 @@ This is a Node.js command-line application requesting user input on employees, a
 * $ node index.js
 * Here is a sample of user questions and responses
 ![Usage](./usage.jpg "README.md usage")
-* Sample HTML created
+* The output file will be written to the /dist folder. Here is sample index.html created by the app 
 ![HTML](./htmlview.jpg "README.md HTML output")
 * Sample HTML in browser
 ![Browser](./browserview.jpg "README.md browser view")
+* Here is a walkthrough of the usage: test, start app, sample user responses, and HTML output.
+https://drive.google.com/file/d/1_ayYhr_GL1fjUY6UZFSb_MGJnlVgvMeB/view
 
 ## Reference
 mod10

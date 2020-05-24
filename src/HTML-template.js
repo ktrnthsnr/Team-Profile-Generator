@@ -9,33 +9,34 @@
 
 // ------ HTML template for 'engineer' profiles --- create generate profile function 
 
-        const generateProfiles = profilesArr => {
-            console.log('engineerArray', profilesArr)
-            return `            
-                ${profilesArr
-                  // .filter(({ confirmAddEngineer }) => confirmAddEngineer)
-                  .map((engineer) => {
-                    // if (employee instanceof Engineer)
-                    return `
-          <div class="column">
-            <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                  <h5>${engineer.getName()}</h5><h6>Engineer</h6>
-                    <ul class="list-group list-group-flush"> 
-                      <li class="list-group-item">ID: ${engineer.getID()} </li>
-                      <li class="list-group-item">&#128386; Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a> </li>
-                      <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a> </li>                                                      
-                    </ul>
-                </div>
-            </div>
-          </div> 
-                  `;
-                  })
-                  .join('')}                
-              `;
-            };
+const generateProfiles = profilesArr => {
+    // console.log('engineerArray', profilesArr)
+    console.log('engineerArray')
+    return `            
+        ${profilesArr
+          // .filter(({ confirmAddEngineer }) => confirmAddEngineer)
+          .map((engineer) => {
+            // if (employee instanceof Engineer)
+            return `
+  <div class="column">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          <h5>${engineer.getName()}</h5><h6>Engineer</h6>
+            <ul class="list-group list-group-flush"> 
+              <li class="list-group-item">ID: ${engineer.getID()} </li>
+              <li class="list-group-item">&#128386; Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a> </li>
+              <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGitHub()}">${engineer.getGitHub()}</a> </li>                                                      
+            </ul>
+        </div>
+    </div>
+  </div> 
+          `;
+          })
+          .join('')}                
+      `;
+    };
    
-/* 
+
        
 // ------ HTML template for 'intern' profiles --- create generate profile function 
 
@@ -48,11 +49,11 @@ const generateInternProfiles = iprofilesArr => {
 <div class="column">
   <div class="card" style="width: 18rem;">
       <div class="card-header">
-        <h5>${internName}</h5><h6>Intern</h6>
+        <h5>${intern.getName()}</h5><h6>Intern</h6>
           <ul class="list-group list-group-flush"> 
-            <li class="list-group-item">ID: ${internID} </li>
-            <li class="list-group-item">&#128386; Email: <a href="mailto:${internEmail}">${internEmail}</a> </li>
-            <li class="list-group-item">School: ${schoolInternUserName}</li>                                                   
+            <li class="list-group-item">ID: ${intern.getID()} </li>
+            <li class="list-group-item">&#128386; Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a> </li>
+            <li class="list-group-item">School: ${intern.getSchool()}</li>                                            
           </ul>
       </div>
   </div>
@@ -63,14 +64,14 @@ const generateInternProfiles = iprofilesArr => {
     `;
   };      
 
-*/
+
 
 
 // -- HTML template ----- framework for index.html -----  //
 
 module.exports = templateData => {  
     // destructure page data by section
-    const { profiles, iprofiles, manager, ...header } = templateData;
+    const { profiles, iprofiles, ...header } = templateData;
 
     return `
     <!DOCTYPE html>
